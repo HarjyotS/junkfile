@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var size;
+        function gen() {
+            var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            var result = ""
+            var chaactersLength = characters.length;
+            size = document.getElementById("size").value * document.getElementById("amt").value;
+            for (var i = 0; i < size; i++) {
+                result += characters.charAt(Math.floor(Math.random() * chaactersLength));
+            }
+            window.value = result;
+            console.log(result)
+        }
+    </script>
+    <script>
+        function download_file() {
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:attachment/text,' + encodeURI(window.value);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'result';
+            hiddenElement.click();
+        }
+    </script>
+    <input id="amt" type="number"></input>
+    <select name="size" id="size">
+        <option value=1>bytes</option>
+        <option value=1000>kilobyte</option>
+        <option value=1000000>megabyte</option>
+        <option value=1000000000>gigabyte</option>
+    </select>
+    <input onclick="gen()" type="submit">
+    <button onclick="download_file()">Download file!</button>
+
+</body>
+
+</html>
